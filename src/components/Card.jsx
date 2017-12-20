@@ -6,6 +6,7 @@ import commarize from "../helpers/commarize";
 const Container = s.div`
   border-radius: 2px;
   border: 1px solid rgba(0, 0, 0, 0.2);
+  height: 300px;
   `;
 
 const Title = s.h2`

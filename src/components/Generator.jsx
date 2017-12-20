@@ -51,11 +51,12 @@ class Generator extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.maxRandom !== this.props.maxRandom) {
-      this.fetchCardData();
+      this.props.setMaxRandom(null, this.fetchCardData());
     }
   }
   componentWillMount() {
-    this.fetchCardData();
+    this.props.setMaxRandom(null, this.fetchCardData());
+    // this.fetchCardData();
   }
 
   render() {

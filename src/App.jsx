@@ -30,7 +30,7 @@ class App extends Component {
     maxRandom: 61
   };
 
-  setMaxRandom = category => {
+  setMaxRandom = (category, then) => {
     // the API call without an id parameter provides us the total count of objects inside that category. we can use that to limimt our randomizer function to that number, and avoid getting 404's.
     fetch(`https://swapi.co/api/${category || this.state.selectedCategory}/`, {
       method: "GET",
@@ -43,6 +43,7 @@ class App extends Component {
         return response.json();
       })
       .then(data => this.setState({ maxRandom: data.count }))
+      .then(then || null)
       .catch(error => {
         console.error(error);
       });
@@ -72,6 +73,7 @@ class App extends Component {
             maxRandom={this.state.maxRandom}
             for={this.state.selectedCategory}
             details={[...this.state.categoryDetailsToShow]}
+            setMaxRandom={this.setMaxRandom}
           />
         </Wrapper>
       </div>
