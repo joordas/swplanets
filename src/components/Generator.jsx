@@ -4,7 +4,16 @@ import s from "styled-components";
 import Card from "./Card";
 
 const RandomButton = s.button`
-
+  background-color: var(--color-accent);
+  border: none;
+  color: white;
+  font-size: 1.625rem;
+  margin: 40px auto 10px;;
+  display: block;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  padding: 10px 16px;
 `;
 
 class Generator extends Component {
@@ -29,7 +38,6 @@ class Generator extends Component {
       .then(response => response.json())
       // sometimes the API will return an planet with a 'unknown' name (i.e. https://swapi.co/api/planets/28/) . This could take the fun out of the game, so we filter the results and call the api again if it returns unkown.
       .then(data => {
-        console.log(data);
         data.name !== "unknown"
           ? this.setState({ cardData: data })
           : this.fetchCardData();
@@ -41,7 +49,12 @@ class Generator extends Component {
       });
   };
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.maxRandom !== this.props.maxRandom) {
+      this.fetchCardData();
+    }
+  }
+  componentWillMount() {
     this.fetchCardData();
   }
 
@@ -49,7 +62,7 @@ class Generator extends Component {
     return (
       <div>
         <Card
-          title={this.state.cardData.name || ""}
+          title={this.state.cardData.name || "Loading"}
           for={this.props.for}
           cardData={this.state.cardData}
           details={this.props.details}

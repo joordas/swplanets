@@ -1,0 +1,27 @@
+:root {
+  --lightGrey: #f2f2f2;
+  --color-accent: #00b0ff;
+
+  --font-display: "Bungee", -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+  --font-alegreya-sans: "Alegreya Sans", -apple-system, BlinkMacSystemFont,
+    Roboto, Helvetica Neue, sans-serif;
+  --font-headers: var(--font-alegreya-sans);
+  --font-sans: "Open Sans", -apple-system, BlinkMacSystemFont, Roboto,
+    Helvetica Neue, sans-serif;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-headers);
+}
